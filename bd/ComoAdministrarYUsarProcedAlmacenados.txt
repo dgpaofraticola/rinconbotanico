@@ -1,0 +1,116 @@
+Los procedimientos almacenados se crean en la base de datos seleccionada.
+
+En primer lugar se deben tipear y probar las instrucciones que se incluyen en el procedimiento almacenado, luego, si se obtiene el resultado esperado, se crea el procedimiento.
+
+Los procedimientos almacenados pueden hacer referencia a tablas, vistas y otros procedimientos almacenados.
+
+Un procedimiento almacenado pueden incluir cualquier cantidad y tipo de instrucciones.
+
+Para crear un procedimiento almacenado empleamos la instrucción "create procedure".
+
+La sintaxis básica parcial es:
+
+create procedure NOMBREPROCEDIMIENTO()
+begin
+ INSTRUCCIONES;
+end
+Con las siguientes instrucciones creamos un procedimiento almacenado llamado "pa_libros_limite_stock" que retorna todos los libros de los cuales hay menos de 10 disponibles:
+
+ create procedure pa_libros_limite_stock()
+ begin
+   select * from libros
+   where stock<=10;
+ end
+Para llamar luego al procedimiento almacenado debemos utilizar la cláusula 'call' y seguidamente el nombre del procedimiento almacenado:
+
+  call pa_libros_limite_stock();
+Cláusula 'delimiter'
+Como un procedimiento almacenado puede tener muchos comandos SQL entre las palabras claves begin y end debemos informar de alguna manera a MySQL que no ejecute dichos comandos. Para ello utilizamos el comando 'delimiter' cambiando el caracter ';' como fin de instrucción. Luego debemos codificar el procedimiento almacenado cambiando el delimitador con la siguiente sintaxis:
+
+ delimiter //
+ create procedure pa_libros_limite_stock()
+ begin
+   select * from libros
+   where stock<=10;
+ end //
+ delimiter ;
+ 
+ call pa_libros_limite_stock();
+Utilizamos el deliminador '//' como podría ser cualquier otro, por ejemplo '$':
+
+delimiter $
+ create procedure pa_libros_limite_stock()
+ begin
+   select * from libros
+   where stock<=10;
+ end $
+ delimiter ;
+ 
+ call pa_libros_limite_stock();
+ 
+Servidor de MySQL instalado en forma local.
+Ingresemos al programa "Workbench" y ejecutemos el siguiente bloque de instrucciones SQL para probar un procedimiento almacenado:
+
+drop table if exists libros;
+
+create table libros(
+  codigo int auto_increment,
+  titulo varchar(40),
+  autor varchar(30),
+  editorial varchar(20),
+  precio decimal(5,2),
+  stock int,
+  primary key(codigo)
+);
+
+ insert into libros(titulo,autor,editorial,precio,stock) 
+  values('Alicia en el pais de las maravillas','Lewis Carroll','Emece',20.00, 9);
+ insert into libros(titulo,autor,editorial,precio,stock)
+  values('Alicia en el pais de las maravillas','Lewis Carroll','Plaza',35.00, 50);
+ insert into libros(titulo,autor,editorial,precio,stock)
+  values('Aprenda PHP','Mario Molina','Siglo XXI',40.00, 3);
+ insert into libros(titulo,autor,editorial,precio,stock)
+  values('El aleph','Borges','Emece',10.00, 18);
+ insert into libros(titulo,autor,editorial,precio,stock)
+  values('Ilusiones','Richard Bach','Planeta',15.00, 22);
+ insert into libros(titulo,autor,editorial,precio,stock)
+  values('Java en 10 minutos','Mario Molina','Siglo XXI',50.00, 7);
+ insert into libros(titulo,autor,editorial,precio,stock)
+  values('Martin Fierro','Jose Hernandez','Planeta',20.00, 3);
+ insert into libros(titulo,autor,editorial,precio,stock)
+  values('Martin Fierro','Jose Hernandez','Emece',30.00, 70);
+ insert into libros(titulo,autor,editorial,precio,stock)
+  values('Uno','Richard Bach','Planeta',10.00, 120);
+
+ drop procedure if exists pa_libros_limite_stock;
+
+ delimiter //
+ create procedure pa_libros_limite_stock()
+ begin
+   select * from libros
+   where stock<=10;
+ end //
+ delimiter ;
+ 
+ call pa_libros_limite_stock();
+ 
+Genera una salida similar a esta:
+
+MySQL procedimientos almacenados
+
+Creación de un procedimiento almacenado utilizando las facilidades de "Workbench":
+Debemos presionar el botón izquierdo del mouse sobre "Stored Procedures" para la base de datos donde queremos crear el procedimiento almacenado:
+
+MySQL procedimientos almacenados creación Workbench
+
+Se nos crea un diálogo donde podemos codificar el procedimiento almacenado:
+
+MySQL procedimientos almacenados creación Workbench
+
+Luego de codificar el procedimiento almacenado presionamos el botón "Apply" y nos aparece un nuevo diálogo con el código final del procedimiento almacenado:
+
+MySQL procedimientos almacenados creación Workbench
+
+Una vez confirmado queda almacenado en la base de datos el nuevo procedimiento para que posteriormente lo podamos invocar con el comando 'call':
+
+call st_libros_precios_bajos;

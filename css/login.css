@@ -1,0 +1,103 @@
+/* Estilos para el formulario de inicio de sesión */
+
+/* Reset de estilos por defecto */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos para el body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Contenedor del formulario de login */
+.login-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center; /* Alineación centrada para el contenido */
+}
+
+/* Título del formulario */
+.login-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Estilos para los grupos de formulario */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Estilos para las etiquetas de los campos */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+    background-color: #fff;
+}
+
+/* Estilos para los campos de entrada */
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilos para el botón de submit */
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Estilos para el contenedor del checkbox */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    float:left; /* Alinea el contenido del contenedor a la izquierda */
+   /* justify-content: flex-start; /* Alinea el contenido del contenedor a la izquierda */
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Estilos para el checkbox "Mostrar Contraseña" */
+.checkbox-container input[type="checkbox"] {
+    margin-right:0px;
+    padding:0;
+    vertical-align: middle; /* Alineación vertical del checkbox */
+    width: 40px; /* Tamaño del checkbox */
+}
+
+/* Estilos para el texto dentro del checkbox */
+.checkbox-container label {
+    font-size: 14px; /* Tamaño de fuente para el texto del checkbox */
+    line-height: 1; /* Ajusta la altura de línea para mantenerlo en una sola línea */
+}
+
+/* Estilos para el mensaje de error */
+#error-message {
+    margin-top: 10px;
+    font-size: 14px;
+}
+

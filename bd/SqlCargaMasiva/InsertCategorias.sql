@@ -1,0 +1,1 @@
+INSERT INTO rinconbotanico.Categorias (IdCategotrias, CategoriasDescripcion, RangoId) Values (1, 'Acuaticas', '1 a 999', 2, 'Exterior', '1000 a 1999', 3,'Interior', '2000 a 2999',  )

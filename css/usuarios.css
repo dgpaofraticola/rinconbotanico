@@ -1,0 +1,115 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial' 'Montserrat', sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    margin-left: 10px;
+    text-align: center;
+    color: #00800f;
+    padding: 25px 15px 0px 70px;
+}
+
+.btn {
+    margin-bottom: 10px;
+}
+
+/* Tabla responsiva */
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* Estilos de la tabla */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.table th,
+.table td {
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilos para los botones de acciones */
+.btn-primary,
+.btn-danger,
+.btn-warning {
+    margin-right: 5px;
+}
+
+/* Estilos para el spinner */
+.spinner-border {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    vertical-align: text-bottom;
+    border-width: 0.25em;
+    border-color: currentColor;
+    border-right-color: transparent;
+    animation: spinner-border 0.75s linear infinite;
+}
+
+@keyframes spinner-border {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Estilos para el mensaje de error */
+p.error-message {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Estilos para el footer */
+.footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #f2f2f2;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Estilos para los formularios alta y editar */
+form {
+    background-color: aliceblue;
+    margin:10px auto; 
+    width: 400px; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/*Estilos los labels de formularios alta y editar */
+.mb-3 label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+    background-color: aliceblue;
+    padding:0px;
+    margin-bottom: 0px;
+}

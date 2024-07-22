@@ -1,0 +1,810 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.show-more {
+    color: rgb(4, 78, 15);
+    cursor: pointer;
+}
+
+
+/*=== Estilos de carousel ===*/
+
+.principal {
+    position: relative;
+    width: 100vw;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carouselExampleFade {
+    display: flex;
+}
+
+.carouselExampleFade img {
+    width: 100%;
+    display: block;
+}
+
+.principal h1 {
+    color: #fff;
+    font-size: 6vw;
+    font-weight: 600;
+    font-style: oblique;
+    text-align: center;
+    text-shadow: 2px 2px 5px #050505;
+    text-rendering: optimizeLegibility;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 25px 15px 0px 25px;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+/*=== acá termina el carousel ===*/
+
+main h1 {
+    color: #00800f;
+    padding: 25px 15px 0px 70px;
+}
+
+main
+
+/*=== Agregué main porque si no, los ignora === */
+h2,
+h6 {
+    color: #00800f;
+    padding: 25px 15px 0px 70px;
+}
+
+.header {
+    background-color: #00800f;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    /* == Para que ocupe siempre todo el ancho de la pantalla*/
+    max-height: 120px;
+}
+
+.logo img {
+    width: 100px;
+    /* Ajustemos el tamaño del logo según sea necesario */
+    text-decoration: none;
+    /* == Para mantener mismo estilo del header en el 'alt' del logo (si falta la imagen).*/
+    color: #fff;
+    /*== Idem text-decoration*/
+}
+
+/* --------- Dejamos comentado el estilo de la versión anterior sin menú hamburguesa -------
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    /* == Establece la visualización como flexbox*/
+/*
+    float: left;
+    /*== Para que desborde al achicar pantalla*/
+/*
+}
+
+/* .navbar ul li {
+    display: inline-block;
+    margin-right: 20px;
+    /* == Cambio a margin-right para que 'Contacto' se vea completa al achicar pantalla.*/
+/*
+} 
+
+.navbar ul li:first-child {
+    margin-left: 20px;
+    /* == Agregamos margin que se despegue del logo al achicar pantalla*/
+/*
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.navbar ul li a:hover {
+    text-decoration: underline;
+    /*== Agregamos mismo estilo que en footer para 'hover'*/
+/*
+}
+-----------fin del comentario--------------*/
+
+/* -- Menu Hamburguesa - SACADO DE LA W3SCHOOL Style the links inside the navigation bar */
+.topnav a {
+    display: block;
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #00800f;
+    color: #fff;
+    text-decoration: underline;
+}
+
+.topnav a {
+    /*background-color: #00800f;*/
+    color: #fff;
+    padding-top: 0;
+}
+
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+    display: none;
+}
+
+/* Estilos de informacion de usuario y rol en el backoffice */
+.user-info {
+    display: flex;
+    gap: 20px; /* Espacio entre los elementos */
+    justify-content:space-between;
+    align-items:flex-end;
+    color:#f2f2f2;
+    font-size: small;
+}
+
+.user-info p {
+    margin:0;
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+    .topnav a:not(:first-child) {
+        display: none;
+    }
+
+    .topnav a.icon {
+        display: block;
+        float: right;
+    }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+
+    /*.topnav.responsive {position: relative;}*/
+
+    .topnav.responsive a.icon {
+        display: block;
+        float: right;
+        position: sticky;
+        right: 0;
+        top: 27px;
+    }
+
+    .topnav.responsive a {
+        display: block;
+        float: none;
+        text-align: right;
+        box-sizing: border-box;
+        /* Para que el padding no afecte el ancho total */
+        width: 160px;
+        /* Ancho fijo para todos los enlaces */
+        background-color: #00800f;
+    }
+
+    .topnav.responsive {
+        background-color: #00800f;
+        position: relative;
+        top: 40px;
+        z-index: 1000;
+        /* Un valor alto para asegurarnos de que esté por encima del carrusel */
+    }
+
+
+
+}
+
+
+/*.hero {
+   
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    /* Ajustemos la altura según sea necesario 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
+
+.newsletter {
+    background-color: rgba(255, 255, 255, 0.652);
+    /* Fondo semitransparente */
+    padding: 20px;
+    text-align: center;
+}
+
+.newsletter h2 {
+    margin-bottom: 10px;
+}
+
+.newsletter input[type="email"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    width: 50%;
+}
+
+.newsletter button {
+    padding: 10px 20px;
+    background-color: #00800f;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    animation: 2s shaking infinite
+}
+
+/*Animación botón suscribe**************/
+@keyframes shaking {
+    10% {
+        transform: scale(1.10);
+    }
+
+    20% {
+        transform: scale(1.10);
+    }
+
+    30% {
+        transform: scale(1.10);
+    }
+
+    40% {
+        transform: none;
+    }
+
+}
+
+/*********************************************/
+
+.card-container {
+    display: flex;
+    justify-content: space-around;
+    /*== Cambio a space-around para que las cards de 2da línea queden menos separadas.*/
+    flex-wrap: wrap;
+    /*== Para que desborde hacia abajo*/
+}
+
+.card {
+    /*flex: 1;
+    max-width: 30%;*/
+    /* == Dejo comentado por si acaso, ver cambio en línea siguiente.*/
+    max-width: 400px;
+    /*== Cambio a max-width absoluto para que se ordenen hacia abajo al achicar pantalla. */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 6px 6px;
+    padding: 15px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+
+}
+
+.card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.card-content {
+    padding: 15px 0;
+
+}
+
+.card-content h3 {
+    font-size: 1.6em;
+    margin-bottom: 10px;
+}
+
+.card-content h4 {
+    /*== Agregué este porque me parece q está como h5 en el html.*/
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.card-content a {
+    /* == Para agregar estilo título de las cards*/
+    text-decoration: none;
+    color: #00800f;
+}
+
+.card-content a:hover {
+    /* == Para agregar mismo estilo en el hover de las cards*/
+    text-decoration: underline;
+    color: #00800f;
+}
+
+.card-content p {
+    font-size: 1em;
+    color: #333;
+}
+
+.d-flex h5 {
+    /*== Forzar mayúsculas en el título de las plantas de la api*/
+    text-transform: uppercase;
+}
+
+
+/*************Animacion cards index***********/
+.card:hover {
+    animation: 5s cards;
+    box-shadow: 2px 2px 2px rgb(136, 133, 133);
+    ;
+}
+
+@keyframes cards {
+
+    10% {
+        transform: scale(1.01);
+    }
+
+    100% {
+        transform: none;
+    }
+}
+
+/**************************************/
+.footer {
+    background-color: #00800f;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer h5 {
+    margin-top: 10px;
+    /*== Para dar separación entre la línea de ítems del Mapa de Sitio y el título de Redes Sociales en el modo mobile. */
+}
+
+.mapa-sitio ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    /* Establece la visualización como flexbox */
+    flex-wrap: wrap;
+    /*Para que desborde hacia abajo al achicar pantalla.*/
+}
+
+.mapa-sitio ul li {
+    margin-right: 20px;
+    /* Ajusta el espaciado entre elementos */
+}
+
+.mapa-sitio ul li:last-child {
+    margin-right: 0;
+    /* Elimina el margen del último elemento */
+}
+
+.mapa-sitio ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.mapa-sitio ul li a:hover {
+    text-decoration: underline;
+}
+
+
+/* =====Agregamos css específico de somos.html=====*/
+.somos {
+    margin: 20px 10px;
+}
+
+.somos p {
+    font-size: 1em;
+    color: #333;
+}
+
+/* .somos .card {    FG - Agregué esto pero lo dejo comentado, por si acaso, porque lo arreglé diferente.
+        min-width: 180px;
+        margin: 5px;
+    }*/
+
+.card-container .img-somos {
+    width: 100%;
+    border-radius: 50%;
+}
+
+/*====================================================*/
+
+/* === Breadcrumbs en páginas de plantas === */
+
+ul.breadcrumb {
+    background-color: rgba(158, 158, 158, 0.068);
+    color: #00800f;
+}
+
+ul.breadcrumb li a {
+    text-decoration: none;
+    color: #00800f;
+}
+
+ul.breadcrumb li a:hover {
+    text-decoration: underline;
+    /*== Agregamos mismo estilo que en footer para 'hover'*/
+}
+
+li.breadcrumb-item :active {
+    color: #00800f;
+
+}
+
+
+/* ||== RESPONSIVE: PUNTOS DE CORTE ==*/
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+
+    /* For tablets: */
+    .col-s-1 {
+        width: 8.33%;
+    }
+
+    .col-s-2 {
+        width: 16.66%;
+    }
+
+    .col-s-3 {
+        width: 25%;
+    }
+
+    .col-s-4 {
+        width: 33.33%;
+    }
+
+    .col-s-5 {
+        width: 41.66%;
+    }
+
+    .col-s-6 {
+        width: 50%;
+    }
+
+    .col-s-7 {
+        width: 58.33%;
+    }
+
+    .col-s-8 {
+        width: 66.66%;
+    }
+
+    .col-s-9 {
+        width: 75%;
+    }
+
+    .col-s-10 {
+        width: 83.33%;
+    }
+
+    .col-s-11 {
+        width: 91.66%;
+    }
+
+    .col-s-12 {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+    /* For desktop: */
+    .col-1,
+    .col-s-1 {
+        width: 8.33%;
+    }
+
+    .col-2,
+    .col-s-2 {
+        width: 16.66%;
+    }
+
+    .col-3,
+    .col-s-3 {
+        width: 25%;
+    }
+
+    .col-4,
+    .col-s-4 {
+        width: 33.33%;
+    }
+
+    .col-5,
+    .col-s-5 {
+        width: 41.66%;
+    }
+
+    .col-6,
+    .col-s-6 {
+        width: 50%;
+    }
+
+    .col-7,
+    .col-s-7 {
+        width: 58.33%;
+    }
+
+    .col-8,
+    .col-s-8 {
+        width: 66.66%;
+    }
+
+    .col-9,
+    .col-s-9 {
+        width: 75%;
+    }
+
+    .col-10,
+    .col-s-10 {
+        width: 83.33%;
+    }
+
+    .col-11,
+    .col-s-11 {
+        width: 91.66%;
+    }
+
+    .col-12,
+    .col-s-12 {
+        width: 100%;
+    }
+}
+
+
+/* FORMULARIO DE CONTACTO Y MAPAS */
+.form-location-section {
+    display: flex;
+    justify-content: space-between;
+    /* Distribuir los elementos horizontalmente */
+    flex-wrap: wrap;
+    /* Para que desborde hacia abajo*/
+}
+
+.form-section {
+    background-color: #F2F2F2;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    max-width: 700px;
+    /* Centrar los elementos horizontalmente */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
+}
+
+.error {
+    color: red;
+}
+
+input[type="submit"] {
+    margin-top: 20px;
+    text-align: center;
+    border-radius: 10%;
+}
+
+.location {
+    min-width: 40%;
+    margin: 0 auto 20px auto;
+}
+
+.location iframe {
+    width: 100%;
+    height: 200px;
+}
+
+label {
+    background-color: #F2F2F2;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.text-container {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 25px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select,
+#ubicacion,
+#area,
+#mensaje,
+#archivo {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    border: 1px solid #999999;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus,
+select:focus,
+#ubicacion:focus,
+#area:focus,
+#mensaje:focus,
+#archivo:focus {
+    background-color: #d8e8f2;
+    color: black;
+}
+
+input[type="text"]:not(:placeholder-shown),
+input[type="email"]:not(:placeholder-shown),
+input[type="tel"]:not(:placeholder-shown),
+textarea:not(:placeholder-shown),
+select:not(:placeholder-shown),
+#ubicacion:not(:placeholder-shown),
+#area:not(:placeholder-shown),
+#mensaje:not(:placeholder-shown),
+#archivo:not(:placeholder-shown) {
+    background-color: #D8F2DC;
+    color: black;
+}
+
+::placeholder,
+#nombre::placeholder,
+#email::placeholder,
+#direccion::placeholder,
+#telefono::placeholder,
+#area::placeholder,
+#mensaje::placeholder,
+#archivo::placeholder {
+    color: rgb(7, 7, 7);
+}
+
+#mensaje {
+    height: 90px;
+}
+
+.info-privacidad {
+    font-size: 7pt;
+}
+
+#politica {
+    color: #00800f;
+    font-weight: 500;
+}
+
+#obligatorios {
+    font-size: 12px;
+    font-style: oblique;
+}
+
+.locations-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.locations {
+    flex: 1;
+    margin-top: 10px;
+}
+
+.location {
+    margin-bottom: 20px;
+}
+
+.d-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+
+
+/*
+
+.card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    padding: 16px;
+    text-align: left;
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.card h2 {
+    font-size: 1.2em;
+    margin: 0.5em 0;
+}
+
+.card p {
+    font-size: 0.9em;
+    color: #666;
+}
+*/
+
+.video-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.video-container iframe {
+    max-width: 100%;
+}
+
+
+input[type="submit"] {
+    margin-top: 10px;
+    /* Agregar un poco de espacio sobre el botón */
+    text-align: center;
+    /* Centrar horizontalmente el botón */
+}
+
+.submit-btn {
+    margin-top: 10px;
+    /* Agregar un poco de espacio sobre el botón */
+    text-align: center;
+    /* Centrar horizontalmente el botón */
+    background-color: gray;
+    /* Color inicial del botón */
+    color: white;
+    /* Color del texto */
+    border: none;
+    padding: 10px 20px;
+    cursor: not-allowed;
+    /* Cursor de no permitido cuando está deshabilitado */
+}
+
+.submit-btn.enabled {
+    background-color: green;
+    /* Color del botón habilitado */
+    cursor: pointer;
+    /* Cambiar cursor cuando está habilitado */
+}
+
+/* panel de control*/
+
+

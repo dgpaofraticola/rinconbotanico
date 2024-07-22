@@ -1,0 +1,9 @@
+usuario		clave inicial
+Ana		ana
+JuanCarlos	juan
+DBA		xxx
+MariaFernanda	maria
+Paola		paola
+MarcelaCerda	marcela
+
+C:\Users\All Users\MySQL\MySQL Server 8.0\Data\rinconbotanico

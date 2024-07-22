@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW PlantasConFoto AS SELECT plantas.idPlantas, PlantasNombre, idCategoria, CategoriaDescripcion, imagenes.ImagenesLinkFoto FROM plantas INNER JOIN imagenes WHERE imagenes.idPlantas=plantas.idPlantas;
+SELECT * FROM PlantasConFoto;

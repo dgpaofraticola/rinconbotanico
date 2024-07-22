@@ -1,0 +1,47 @@
+// Recuperar del sessionStorage
+var storedUsername = sessionStorage.getItem('usuario');
+var storedUserRole = sessionStorage.getItem('rol');
+
+// Verificar si los datos están disponibles y mostrarlos en el encabezado
+if (storedUsername && storedUserRole) {
+    var headerElement = document.getElementById("header");
+
+    // Actualizar el contenido del encabezado con los datos del usuario
+    headerElement.innerHTML = `
+ <nav class="navbar navbar-expand-sm navbar-light bg-light">
+<div class="container">
+  <a class="navbar-brand" href="index.html">Navbar</a>
+  <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavId">
+      <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+              <a class="nav-link active" href="index.html" target="_blank" aria-current="page">Sitio Web <span class="visually-hidden">(current)</span></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CRUD</a>
+              <div class="dropdown-menu" aria-labelledby="dropdownId">
+                  <a class="dropdown-item" href="plantas.html">Plantas</a>
+                  <a class="dropdown-item" href="usuarios.html">Usuarios</a>
+              </div>
+          </li>
+      </ul>
+
+      <div class="user-info"> <!-- Nuevo elemento para mostrar información del usuario -->
+      <p class="user-name">Usuario: ${storedUsername}</p>
+      <p class="user-role">Rol: ${storedUserRole}</p>
+      </div>
+
+      <form class="d-flex my-2 my-lg-0">
+          <input class="form-control me-sm-2" type="text" placeholder="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+  </div>
+</div>
+</nav>
+`}

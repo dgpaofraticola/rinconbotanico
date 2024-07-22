@@ -1,0 +1,71 @@
+Consultas OK
+SELECT * FROM plantas INNER JOIN dataplantas where `dataplantas`.`idPlantas`=`plantas`.`idPlantas`;
+SELECT * FROM plantas INNER JOIN imagenes WHERE `imagenes`.`idPlantas` =`plantas`.`idPlantas`;
+
+Vista OK
+CREATE OR REPLACE VIEW PlantasConFoto AS SELECT plantas.idPlantas, PlantasNombre, idCategoria, CategoriaDescripcion, imagenes.ImagenesLinkFoto FROM plantas INNER JOIN imagenes WHERE imagenes.idPlantas=plantas.idPlantas;
+SELECT * FROM PlantasConFoto;
+
+CREATE OR REPLACE VIEW PlantasConFoto AS SELECT plantas.idPlantas, PlantasNombre, idCategoria, CategoriaDescripcion, imagenes.ImagenesLinkFoto FROM plantas INNER JOIN imagenes WHERE imagenes.idPlantas=plantas.idPlantas;
+SELECT * FROM PlantasConFoto;
+CREATE OR REPLACE VIEW DataFull AS SELECT PlantasConFoto.idPlantas, PlantasNombre, idCategoria, CategoriaDescripcion, ImagenesLinkFoto, dataplantas.Ubicacion, dataplantas.Sustrato, dataplantas.Riego, dataplantas.Floracion, dataplantas.Tamano, dataplantas.Observaciones FROM PlantasConFoto INNER JOIN dataplantas WHERE `dataplantas`.`idPlantas`=`PlantasConFoto`.`idPlantas`;
+SELECT * FROM DataFull;
+
+INSERT INTO utilidadvista SELECT * FROM plantas INNER JOIN imagenes WHERE `imagenes`.`idPlantas` =`plantas`.`idPlantas`;
+SELECT * FROM utilidadvista;
+SELECT * FROM utilidadvista INNER JOIN dataplantas WHERE `dataplantas`.`idPlantas`=`plantas`.`idPlantas`;
+DELETE FROM utilidadvista WHERE rinconbotanico.`utilidadvista`.`idPLantas`>0;
+
+CREATE OR REPLACE VIEW movimientos AS SELECT proyecto, varBusqueda, 
+idUsuario, nombreUsuario, idProducto, descProducto, SUM(cantidad) AS 
+stockmovimientosmovimientos
+FROM century_caja_terminal GROUP BY varBusqueda
+
+FULL OUTER JOIN	
+
+CREATE OR REPLACE VIEW movimientos 
+AS 
+SELECT proyecto, 
+       varBusqueda, 
+       idUsuario, 
+       nombreUsuario, 
+       idProducto, 
+       descProducto, 
+       SUM(cantidad) AS stockmovimientosmovimientos
+FROM century_caja_terminal c
+LEFT JOIN OtraTabla o ON o.idOtraTabla = c.idDelaTablaAnterior
+GROUP BY varBusqueda
+
+UNION Cabe destacar que el numero de columnas debe ser el mismo y el nombre debe ser también el mismo
+Para unir 2 tablas sin la necesidad de campos clave puedes usar el UNION, ejemplo
+CREATE OR REPLACE VIEW PlantasConFoto AS SELECT idplantas, PlantasNombre, idCategoria, CategoriaDescripcion FROM plantas INNER JOIN imagenes.ImagenesLinkFoto ON `imagenes`.`idPlantas` =`plantas`.`idPlantas`;
+
+SELECT proyecto, 
+       varBusqueda, 
+       idUsuario, 
+       nombreUsuario, 
+       idProducto, 
+       descProducto, 
+       SUM(cantidad) AS cantidad
+FROM century_caja_terminal
+GROUP BY varBusqueda
+UNION
+SELECT proyecto, 
+       varBusqueda, 
+       idUsuario, 
+       nombreUsuario, 
+       idProducto, 
+       descProducto, 
+       SUM(cantidad) AS cantidad
+FROM otraTabla c
+GROUP BY varBusqueda
+
+JSON_OBJECT([key, val[, key, val] ...])
+Evaluates a (possibly empty) list of key-value pairs and returns a JSON object containing those pairs. An
+error occurs if any key name is NULL or the number of arguments is odd.
+mysql> SELECT JSON_OBJECT('id', 87, 'name', 'carrot');
++-----------------------------------------+
+| JSON_OBJECT('id', 87, 'name', 'carrot') |
++-----------------------------------------+
+| {"id": 87, "name": "carrot"} |
++-----------------------------------------+

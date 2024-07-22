@@ -1,0 +1,10 @@
+USE `RinconBotanico`;
+CREATE TABLE IF NOT EXISTS `RinconBotanico`.`mensajes`  (
+`idMensajes` INT NOT NULL AUTO_INCREMENT,
+`NombreYApellido` VARCHAR(100) NOT NULL,
+`Direccion` VARCHAR(200) NOT NULL,
+`CgoArea` VARCHAR(100) NOT NULL,
+`Area` VARCHAR(100) NOT NULL,
+`Mensaje` VARCHAR(600) NOT NULL,
+PRIMARY KEY (`idMensajes`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
