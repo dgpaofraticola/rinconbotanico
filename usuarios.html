@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>Panel de Control ::: Usuarios - Rincón Botánico</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="shortcut icon" href="./img/Logo.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+    <title>Rincón Botánico</title>
+    <link rel="stylesheet" href="css/usuarios.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html" target="_blank">
+
+                    Rincón Botánico
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Panel de Control
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="usuarios.html">Usuarios</a></li>
+                                <li><a class="dropdown-item" href="plantas.html">Plantas</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Mostrar usuario y rol -->
+        <div class="user-info">
+            <div>
+                <p>Usuario: </p>
+                <p>Rol: </p>
+            </div>
+            <div>
+                <p class="username" id="username"> ${usuarioValido.usuario}</p>
+                <p class="userrole" id="userrole">Rol: ${storedUserRole}</p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div id="app" class="container">
+            <h1>Panel de Control de Usuarios</h1>
+            <br>
+            <a v-if="userRole !== 'readonly'"  class="btn btn-success" href="usuario_nuevo.html">Nuevo</a>
+            <br><br>
+            <div v-if="error">
+                <p>Lo sentimos , ........</p>
+            </div>
+            <div v-else>
+                <section v-if="cargando">
+                    <div class="spinner-border"></div>
+                    <p>Cargando .....</p>
+                </section>
+                <section v-else>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+
+                                    <!--usuario,clave,rol-->
+
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Usuario</th>
+                                    <th scope="col">Clave</th>
+                                    <th scope="col">Rol</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="" v-for="usuario in usuarios">
+                                    <td scope="row">{{usuario.id}}</td>
+                                    <td>{{usuario.usuario}}</td>
+                                    <td>{{hidePassword(usuario.clave)}}</td>
+                                    <!--Enmascaramiento de clave: llama a la función hidepassword-->
+                                    <td>{{usuario.rol}}</td>
+                                    <td>
+                                        <a v-if="userRole !== 'readonly'"   class="btn btn-warning"
+                                            :href="'usuario_update.html?id='+ usuario.id">Editar</a>
+                                        <button v-if="userRole !== 'readonly'"   type="button" class="btn btn-danger"
+                                            v-on:click="eliminar(usuario.id)">Eliminar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <!-- place footer here -->
+    </footer>
+    <script>
+        // Mostrar datos del usuario desde sessionStorage
+        document.getElementById('username').textContent = sessionStorage.getItem('username');
+        document.getElementById('userrole').textContent = sessionStorage.getItem('userRole');
+    </script>
+    <!--Link de Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+        crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script><!--Link de VUE-->
+    <script src="./js/usuarios.js"></script>
+</body>
+
+</html>

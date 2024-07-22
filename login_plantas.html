@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/Logo.ico">
+    <title>Login - Rincón Botánico</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <span> <img src="img/Logo.png" alt="Logo de Rincón Botánico" width="200px;"></span>
+        <h2>::: Panel de Control ::: Plantas</h2>
+        <h4>Iniciar Sesión</h4>
+        <br>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="usuario">Usuario</label>
+                <input type="text" id="usuario" name="usuario" required>
+            </div>
+            <div class="form-group">
+                <label for="clave">Contraseña</label>
+                <input type="password" id="clave" name="clave" required>
+                <div class="checkbox-container">
+                    <input type="checkbox" onclick="myFunction()">
+                    <label class="checkbox-label">Mostrar Contraseña</label>
+                </div>
+            </div>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+        <div id="error-message" style="color: red;"></div>
+    </div>
+
+    <script>
+        // Función para mostrar/ocultar la contraseña
+        function myFunction() {
+            var x = document.getElementById("clave");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+
+        document.getElementById('login-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const usuarioInput = document.getElementById('usuario').value;
+            const claveInput = document.getElementById('clave').value;
+
+            // URL de la API
+            const url = 'https://pyteam2024.pythonanywhere.com/usuarios';
+
+            // Obtener datos de los usuarios desde la API
+            fetch(url)
+                .then(response => response.json())
+                .then(usuarios => {
+                    const usuarioValido = usuarios.find(usuario => usuario.usuario === usuarioInput && usuario.clave === claveInput);
+
+                    if (usuarioValido) {
+                        // Guardar usuario y rol en sessionStorage
+                        sessionStorage.setItem('username', usuarioValido.usuario);
+                        sessionStorage.setItem('userRole', usuarioValido.rol);
+
+
+                        // Redirigir al CRUD de usuarios
+                        window.location.href = 'plantas.html';
+                    } else {
+                        document.getElementById('error-message').innerText = 'Datos incorrectos. Inténtalo de nuevo.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al obtener los usuarios:', error);
+                    document.getElementById('error-message').innerText = 'Error al validar las credenciales. Inténtalo de nuevo más tarde.';
+                });
+        });
+    </script>
+</body>
+
+</html>

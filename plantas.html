@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>Panel de control - Plantas - Rincón Botánico</title>
+    <link rel="shortcut icon" href="./img/Logo.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const userRole = sessionStorage.getItem('userRole');
+            if (userRole === 'readonly') {
+                document.querySelector('.btn-success').style.display = 'none';
+                document.querySelectorAll('.btn-warning, .btn-danger').forEach(button => {
+                    button.style.display = 'none';
+                });
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html" target="_blank">
+
+                    Rincón Botánico
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Panel de Control
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="usuarios.html">Usuarios</a></li>
+                                <li><a class="dropdown-item" href="plantas.html">Plantas</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+
+                </div>
+            </div>
+        </nav>
+        <!-- Mostrar usuario y rol -->
+        <div class="user-info">
+            <div>
+                <p>Usuario: </p>
+                <p>Rol: </p>
+            </div>
+            <div>
+                <p class="username" id="username"> ${usuarioValido.usuario}</p>
+                <p class="userrole" id="userrole">Rol: ${storedUserRole}</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div id="app" class="container">
+            <h1>Panel de Control de Plantas</h1>
+            <br>
+            <a v-if="userRole !== 'readonly'"   class="btn btn-success" href="planta_nuevo.html">Nuevo</a>
+            <br><br>
+            <div v-if="error">
+                <p>Lo sentimos , ........</p>
+            </div>
+            <div v-else>
+                <section v-if="cargando">
+                    <div class="spinner-border"></div>
+                    <p>Cargando .....</p>
+                </section>
+                <section v-else>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Categoría</th>
+                                    <th scope="col">Ubicación</th>
+                                    <th scope="col">Sustrato</th>
+                                    <th scope="col">Riego</th>
+                                    <th scope="col">Floración</th>
+                                    <th scope="col">Tamaño</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Imagen</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="" v-for="planta in plantas">
+                                    <td scope="row">{{planta.id}}</td>
+                                    <td>{{planta.nombre}}</td>
+                                    <td>{{planta.categoria}}</td>
+                                    <td>{{planta.ubicacion}}</td>
+                                    <td>{{planta.sustrato}}</td>
+                                    <td>{{planta.riego}}</td>
+                                    <td>{{planta.floracion}}</td>
+                                    <td>{{planta.tamano}}</td>
+                                    <td>{{planta.descripcion}}</td>
+                                    <td>
+                                        <img width="60" :src="planta.imagen" :alt="planta.nombre">
+                                    </td>
+                                    <td>
+                                        <a v-if="userRole !== 'readonly'" class="btn btn-warning"
+                                            :href="'planta_update.html?id='+ planta.id">Editar</a>
+                                        <button v-if="userRole !== 'readonly' "type="button" class="btn btn-danger"
+                                            v-on:click="eliminar(planta.id)">Eliminar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>∫
+    </main>
+    <footer class="footer">
+        <!-- place footer here -->
+    </footer>
+
+    <script>
+        // Mostrar datos del usuario desde sessionStorage
+        document.getElementById('username').textContent = sessionStorage.getItem('username');
+        document.getElementById('userrole').textContent = sessionStorage.getItem('userRole');
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const userRole = sessionStorage.getItem('userRole');
+
+            if (userRole === 'readonly') {
+                // Deshabilitar todas las opciones de edición
+                const editButtons = document.querySelectorAll('.edit-button');
+                editButtons.forEach(button => button.disabled = true);
+
+                const deleteButtons = document.querySelectorAll('.delete-button');
+                deleteButtons.forEach(button => button.disabled = true);
+
+                const addButton = document.getElementById('add-button');
+                if (addButton) {
+                    addButton.disabled = true;
+                }
+            }
+        });
+    </script>
+    <!--Link de Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+        crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script><!--Link de VUE-->
+    <script src="./js/plantas.js"></script>
+
+
+
+</body>
+
+</html>

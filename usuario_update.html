@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Editar Usuario - Rincón Botánico</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="shortcut icon" href="./img/Logo.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/usuarios.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    
+   </head>
+
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html" target="_blank">
+
+                    Rincón Botánico
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Panel de Control
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="usuarios.html">Usuarios</a></li>
+                                <li><a class="dropdown-item" href="plantas.html">Plantas</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- Mostrar usuario y rol -->
+
+                </div>
+            </div>
+        </nav>
+        <div class="user-info">
+            <div>
+                <p>Usuario: </p>
+                <p>Rol: </p>
+            </div>
+            <div>
+                <p class="username" id="username"> ${usuarioValido.usuario}</p>
+                <p class="userrole" id="userrole">Rol: ${storedUserRole}</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container" id="app">
+            <form style="background-color: aliceblue;margin:10px auto ; width: 400px; padding: 20px;">
+                <h1>Editar Usuario </h1>
+                <div class="mb-3">
+                    <label for="id">Id</label>
+                    <input type="number" name="id" id="id" disabled v-model="id">
+                </div>
+                <div class="mb-3">
+                    <label for="usuario">Usuario:</label><br>
+                    <input type="text" name="usuario" id="usuario" v-model="usuario">
+                </div>
+                <div class="mb-3">
+                    <label for="clave">Clave:</label><br>
+                    <input type="password" name="clave" id="clave" v-model="clave">
+                </div>
+                <div class="mb-3">
+                    <label for="rol">Rol: </label><br>
+                    <input type="radio" name="rol" value="dba" v-model="rol">DB Administrator<br>
+                    <input type="radio" name="rol" value="dataentry" v-model="rol">Data Entry<br>
+                    <input type="radio" name="rol" value="readonly" v-model="rol">Read Only<br>
+                </div>
+                <button type="button" class="btn btn-success" v-on:click="modificar()">Grabar</button>
+            </form>
+        </div>
+    </main>
+    <footer class="footer">
+        <!-- place footer here -->
+    </footer>
+    <script>
+        // Mostrar datos del usuario desde sessionStorage
+        document.getElementById('username').textContent = sessionStorage.getItem('username');
+        document.getElementById('userrole').textContent = sessionStorage.getItem('userRole');
+    </script>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+        crossorigin="anonymous"> </script>
+    <script src="./js/main.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./js/usuario_editar.js"></script>
+</body>
+
+</html>
